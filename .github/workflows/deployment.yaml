@@ -22,4 +22,5 @@ spec:
         env:
         - name: NODE_ENV
           value: production # Example environment variable
-
+        imagePullSecrets:
+        - name: ghcr-secret
