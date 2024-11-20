@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rocketdex-deployment
+  labels:
+    app: rocketdex
+spec:
+  replicas: 2 # Number of replicas for high availability
+  selector:
+    matchLabels:
+      app: rocketdex
+  template:
+    metadata:
+      labels:
+        app: rocketdex
+    spec:
+      containers:
+      - name: rocketdex
+        image: ghcr.io/ykhadnevich/ykhadnevich-gh-actions-workshop:latest # Replace with your Docker image
+        ports:
+        - containerPort: 3000 # Your application listens on port 3000
+        env:
+        - name: NODE_ENV
+          value: production # Example environment variable
+
