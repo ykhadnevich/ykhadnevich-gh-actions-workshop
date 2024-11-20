@@ -5,7 +5,7 @@ metadata:
   labels:
     app: rocketdex
 spec:
-  replicas: 2 # Number of replicas for high availability
+  replicas: 2
   selector:
     matchLabels:
       app: rocketdex
@@ -14,13 +14,13 @@ spec:
       labels:
         app: rocketdex
     spec:
+      imagePullSecrets:
+      - name: ghcr-secret # Reference to the secret for the private registry
       containers:
       - name: rocketdex
-        image: ghcr.io/ykhadnevich/ykhadnevich-gh-actions-workshop:latest # Replace with your Docker image
+        image: ghcr.io/ykhadnevich/ykhadnevich-gh-actions-workshop:latest
         ports:
-        - containerPort: 3000 # Your application listens on port 3000
+        - containerPort: 3000
         env:
         - name: NODE_ENV
-          value: production # Example environment variable
-        imagePullSecrets:
-        - name: ghcr-secret
+          value: production
